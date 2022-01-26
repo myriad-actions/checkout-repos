@@ -1,0 +1,36 @@
+name: 'Checkout repositories'
+description: 'Checkout working repository and ci tools repository'
+inputs:
+  tools-repository:
+    description: >
+      The path to tools repository
+      If not specifid, will use current respository name
+      appended with '_tools'. 
+    default: ${{ github.repository }}-tools
+  github-pat:
+    description: >
+      Personal access token (PAT) used by actions/checkout@v2 
+      to fetch the repository. Note that github token
+      can be used only for the working directory. 
+  tools-folder: 
+    description: >
+     The folder name that holds the checkout files
+  tools-path:
+    description: 'The path to tools repository'
+runs:
+  using: "composite"
+  steps:
+    - name: checkout working repository
+      uses: actions/checkout@v2
+    - name: checkout tools repository
+      uses: actions/checkout@v2
+      with:
+        repository:  ${{ inputs.tools-repository }}
+        token: ${{ inputs.github-pat }}
+        path: ${{ inputs.tools-folder }}
+    - name: move files and update file rights
+      run: |
+        sudo mkdir -p ${{ inputs.tools-path }}
+        sudo mv ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
+        sudo chmod -R +x ${{ inputs.tools-path }}/${{ inputs.tools-folder }}
+      shell: bash
