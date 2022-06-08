@@ -28,7 +28,7 @@ runs:
         repository:  ${{ inputs.tools-repository }}
         token: ${{ inputs.github-pat }}
         path: ${{ inputs.tools-folder }}
-        ref: devops
+        ref: master
     - name: move files and update file rights
       run: |
         sudo mkdir -p ${{ inputs.tools-path }}
