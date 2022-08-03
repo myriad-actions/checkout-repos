@@ -31,7 +31,7 @@ runs:
         ref: master
     - name: move files and update file rights
       run: |
-        sudo mkdir -p ${{ inputs.tools-path }}
-        sudo mv ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
-        sudo chmod -R +x ${{ inputs.tools-path }}/${{ inputs.tools-folder }}
+        mkdir -p ${{ inputs.tools-path }}
+        mv ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
+        chmod -R +x ${{ inputs.tools-path }}/${{ inputs.tools-folder }}
       shell: bash
