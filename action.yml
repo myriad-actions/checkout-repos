@@ -22,6 +22,10 @@ runs:
   steps:
     - name: checkout working repository
       uses: actions/checkout@v2
+    - name: add exception for current directory
+      run: |
+        git config --global --add safe.directory $(pwd)
+      shell: bash
     - name: checkout tools repository
       uses: actions/checkout@v2
       with:
