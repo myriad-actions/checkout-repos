@@ -35,7 +35,7 @@ runs:
         ref: master
     - name: move files and update file rights
       run: |
-        mkdir -p ${{ inputs.tools-path }}
+        [ -d ${{ inputs.tools-path }} ] || mkdir -p ${{ inputs.tools-path }}
         mv -f ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
         chmod -R +x ${{ inputs.tools-path }}/${{ inputs.tools-folder }}
       shell: bash
