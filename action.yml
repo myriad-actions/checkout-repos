@@ -36,6 +36,6 @@ runs:
     - name: move files and update file rights
       run: |
         mkdir -p ${{ inputs.tools-path }}
-        mv ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
+        mv -f ${{ inputs.tools-folder }} ${{ inputs.tools-path }}/
         chmod -R +x ${{ inputs.tools-path }}/${{ inputs.tools-folder }}
       shell: bash
